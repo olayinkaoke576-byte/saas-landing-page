@@ -1,0 +1,370 @@
+/* 1. RESET & GLOBAL VARIABLES */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+:root {
+    /* Dstudio Inspired Dark Palette */
+    --bg-dark: #0b0b0f;       /* Deepest Black */
+    --bg-card: #13131a;       /* Slightly lighter for cards */
+    --primary: #6366f1;       /* Indigo */
+    --primary-glow: #818cf8;  /* Lighter Indigo for glows */
+    --accent: #d946ef;        /* Magenta accent */
+    
+    --text-white: #ffffff;
+    --text-gray: #9ca3af;
+    --border-light: rgba(255, 255, 255, 0.1);
+    
+    --glass-bg: rgba(11, 11, 15, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    
+    --transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1); /* Smooth "Apple-like" easing */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif; /* Trendy SaaS Font */
+    background-color: var(--bg-dark);
+    color: var(--text-white);
+    line-height: 1.6;
+    overflow-x: hidden;
+    /* Subtle background glow effect */
+    background-image: 
+        radial-gradient(circle at 15% 50%, rgba(99, 102, 241, 0.15) 0%, transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(217, 70, 239, 0.15) 0%, transparent 25%);
+}
+
+a {
+    text-decoration: none;
+    color: var(--text-gray);
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: var(--transition);
+}
+
+a:hover {
+    color: var(--text-white);
+}
+
+ul { list-style: none; }
+button { border: none; outline: none; font-family: inherit; cursor: pointer; }
+
+/* 2. HEADER (GLASSMORPHISM) */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 5%;
+    
+    /* The "Glass" Look */
+    background-color: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--glass-border);
+    
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text-white);
+    letter-spacing: -0.5px;
+    background: linear-gradient(to right, #fff, #9ca3af);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Nav Menu */
+.menu-nav {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+}
+
+.nav-left, .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+/* Dropdown Styles */
+.dropdown { position: relative; padding: 10px 0; }
+.dropbtn { display: flex; align-items: center; gap: 6px; color: var(--text-white); }
+.arrow { font-size: 0.7rem; transition: var(--transition); }
+
+.dropdown-content {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    top: 100%;
+    left: -10px;
+    background: var(--bg-card);
+    min-width: 220px;
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    padding: 8px;
+    transform: translateY(10px);
+    transition: var(--transition);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+.dropdown:hover .dropdown-content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+.dropdown:hover .arrow { transform: rotate(180deg); }
+
+.dropdown-content li a {
+    padding: 10px 15px;
+    display: block;
+    color: var(--text-gray);
+    border-radius: 8px;
+}
+
+.dropdown-content li a:hover {
+    background-color: rgba(255,255,255,0.05);
+    color: var(--text-white);
+}
+
+/* CTA Buttons */
+.cta-btn {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    background-color: var(--primary);
+    color: white;
+    padding: 0.7rem 1.4rem;
+    border-radius: 100px; /* Pill shape */
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: var(--transition);
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+}
+
+.cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.6);
+}
+
+/* Hamburger */
+.hamburger { display: none; flex-direction: column; gap: 6px; cursor: pointer; }
+.hamburger span { width: 24px; height: 2px; background: var(--text-white); border-radius: 2px; }
+
+/* 3. HERO SECTION */
+.main-nav {
+    text-align: center;
+    padding: 8rem 1rem 3rem 1rem;
+    position: relative;
+}
+
+.main-nav h2 {
+    font-size: 4.5rem; /* Massive text */
+    line-height: 1.1;
+    font-weight: 700;
+    letter-spacing: -2px;
+    margin-bottom: 1.5rem;
+    
+    /* Text Gradient */
+    background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* 4. SUB MAIN */
+.sub-main {
+    text-align: center;
+    padding: 0 1rem 5rem 1rem;
+}
+
+.sub-main h4 {
+    font-size: 1.25rem;
+    color: var(--text-gray);
+    font-weight: 400;
+    max-width: 500px;
+    margin: 0 auto 2.5rem auto;
+}
+
+.Alp-btn {
+    background: var(--text-white);
+    color: var(--bg-dark);
+    padding: 1rem 2.8rem;
+    font-size: 1.1rem;
+    border-radius: 100px;
+    font-weight: 700;
+    transition: var(--transition);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.Alp-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
+}
+
+/* 5. MIDDLE SECTION (Floating Card Effect) */
+.middle {
+    width: 100%;
+    padding: 0 5%;
+    margin-bottom: 6rem;
+}
+
+.overlay-container {
+    position: relative;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid var(--border-light);
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5); /* Deep shadow */
+}
+
+.bg-img {
+    width: 100%;
+    height: auto;
+    min-height: 600px;
+    object-fit: cover;
+    display: block;
+    transition: transform 1s ease;
+}
+
+.overlay-container:hover .bg-img {
+    transform: scale(1.03); /* Subtle zoom on hover */
+}
+
+.dark-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.2));
+    z-index: 1;
+}
+
+.overlay-content {
+    position: absolute;
+    bottom: 10%; /* Text at bottom looks more modern */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    text-align: center;
+    width: 90%;
+}
+
+.overlay-content h5 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: var(--text-white);
+    font-weight: 700;
+}
+
+.middle-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.Try {
+    background: var(--primary);
+    color: white;
+    padding: 0.9rem 2rem;
+    border-radius: 12px;
+    font-weight: 600;
+    box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+    transition: var(--transition);
+}
+
+.Demo-btn {
+    background: rgba(255,255,255,0.1);
+    color: white;
+    padding: 0.9rem 2rem;
+    border-radius: 12px;
+    font-weight: 600;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: var(--transition);
+}
+
+.Try:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(99, 102, 241, 0.5); }
+.Demo-btn:hover { background: rgba(255,255,255,0.2); }
+
+/* 6. SPONSORS */
+.sponsors {
+    padding: 4rem 5%;
+    text-align: center;
+    border-top: 1px solid var(--border-light);
+    border-bottom: 1px solid var(--border-light);
+    background: rgba(255,255,255,0.01);
+}
+
+.sponsors h3 {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-gray);
+    margin-bottom: 3rem;
+}
+
+.sponsor-logos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4rem;
+    align-items: center;
+}
+
+.sponsor-logos img {
+    height: 28px;
+    object-fit: contain;
+    filter: grayscale(100%) brightness(100%); /* Make logos white/grey */
+    opacity: 0.4;
+    transition: var(--transition);
+}
+
+.sponsor-logos img:hover {
+    filter: grayscale(0%) brightness(1.2);
+    opacity: 1;
+}
+
+/* 7. FOOTNOTE */
+.foot-note {
+    padding: 6rem 5%;
+    text-align: center;
+}
+
+.foot-note h5 {
+    font-size: 1.8rem;
+    color: var(--text-white);
+    max-width: 700px;
+    margin: 0 auto;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+.foot-note img {
+    display: block;
+    margin: 4rem auto 0 auto;
+    max-width: 100%;
+    width: 800px;
+    border-radius: 16px;
+    border: 1px solid var(--border-light);
+    box-shadow: 0 -20px 60px rgba(99, 102, 241, 0.1); /* Glow effect from bottom */
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    header { padding: 1rem 1.5rem; }
+    .menu-nav, .cta-btn { display: none; }
+    .hamburger { display: flex; }
+    
+    .main-nav h2 { font-size: 2.8rem; }
+    .overlay-content h5 { font-size: 1.8rem; }
+    
+    .middle-actions { flex-direction: column; width: 100%; }
+    .Try, .Demo-btn { width: 100%; }
+    
+    .sponsor-logos { gap: 2rem; }
+    .sponsor-logos img { height: 22px; }
+}
